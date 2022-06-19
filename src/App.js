@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Form from './componentes/Form/Form';
+import { useState } from 'react';
+import Lista from './componentes/Lista/Lista';
+
 
 function App() {
+  const [lista, setLista] = useState([])
+  const agregarElemento=(elementoAAgregar)=>{
+    setLista([...lista,elementoAAgregar])
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <main>
+        <h1>Lista de tareas!</h1>
+        <Form agregarElemento={agregarElemento}/>
+        <Lista tareas={lista}/>
+      </main>
     </div>
   );
 }
