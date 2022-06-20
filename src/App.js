@@ -1,4 +1,3 @@
-
 import './App.css';
 import Form from './componentes/Form/Form';
 import { useState } from 'react';
@@ -11,10 +10,9 @@ function App() {
     setLista([...lista,elementoAAgregar])
   };
  const borrarTarea=(elementoAQuitar)=>{
-  const listaFiltrada = lista.filter((element)=> element.description !== elementoAQuitar)
+  const listaFiltrada = lista.filter((element)=> element.description !== elementoAQuitar.description)
   setLista(listaFiltrada)
  }
-
 
   return (
     <div className="App">
