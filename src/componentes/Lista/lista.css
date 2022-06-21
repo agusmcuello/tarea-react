@@ -19,3 +19,7 @@ ul {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
   }
+  .tarea{
+    display: flex;
+    align-items: center;
+  }

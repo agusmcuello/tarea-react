@@ -1,6 +1,7 @@
 import React from "react";
 import "./form.css";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const Form = ({ agregarElemento }) => {
   const [valorInput, setValorInput] = useState("");
@@ -17,7 +18,12 @@ const Form = ({ agregarElemento }) => {
   };
 
   const onFormSubmit = () => {
-    agregarElemento({ description: valorInput, prioridad: valorPrioridad });
+    agregarElemento({
+      description: valorInput,
+      prioridad: valorPrioridad,
+      id: uuidv4(),
+      terminada: false,
+    });
   };
   return (
     <div>
