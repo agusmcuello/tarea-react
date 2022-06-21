@@ -2,11 +2,17 @@ import React from "react";
 import "./lista.css";
 
 function Lista({ tareas, borrarTarea }) {
+  console.log(tareas);
   const mostrarTarea = tareas.map((tarea) => (
-    <li onClick={() => borrarTarea(tarea)} key={tarea.description}>
+    <li
+      className={tarea.prioridad}
+      onClick={() => borrarTarea(tarea)}
+      key={tarea.description}
+    >
       {tarea.description}
     </li>
   ));
+  console.log(tareas);
   return (
     <>
       <h3>Tareas</h3>
