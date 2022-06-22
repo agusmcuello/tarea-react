@@ -46,9 +46,9 @@ function Lista({ tareas, borrarTarea, editarTarea }) {
       >
         {tarea.description}
       </li>
-      <button className="editar-tarea" onClick={editarTarea}>
+      {/* <button className="editar-tarea" onClick={cambiarDescripcion}>
         Editar Tarea
-      </button>
+      </button> */}
       <input
         className="check"
         checked={tarea.terminada}
