@@ -23,6 +23,7 @@ const Form = ({ agregarElemento }) => {
       prioridad: valorPrioridad,
       id: uuidv4(),
       terminada: false,
+      fecha: new Date(),
     });
   };
   return (

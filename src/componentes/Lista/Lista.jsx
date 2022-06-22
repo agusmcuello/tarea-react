@@ -3,6 +3,9 @@ import "./lista.css";
 
 function Lista({ tareas, borrarTarea, editarTarea }) {
   const ordenarTareas = tareas.sort((a, b) => {
+    if (a.prioridad === b.prioridad) {
+      return a.fecha - b.fecha;
+    }
     if (a.prioridad === "prioridad-alta") {
       return -1;
     }
