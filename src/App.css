@@ -9,6 +9,10 @@
   background: linear-gradient(290deg, #00c6e3 0%, #4e95f1 50.37%, #9966ff 100%);
   font-family: "Roboto", sans-serif;
 }
+.link{
+  text-decoration: none;
+  color: black;
+}
 main {
   display: grid;
   gap: 20px;

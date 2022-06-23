@@ -1,7 +1,10 @@
+import React, { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Form from "./componentes/Form/Form";
-import { useState } from "react";
-import Lista from "./componentes/Lista/Lista";
+import AgregarTarea from "./pages/AgregarTarea";
+import ListaDeTareas from "./pages/ListaDeTareas";
+import { PaginaPrincipal } from "./pages/PaginaPrincipal";
+
 
 function App() {
   const [lista, setLista] = useState([]);
@@ -25,19 +28,17 @@ function App() {
     lista[indiceAEditar] = { ...elementoAEditar };
     setLista(listaEditada);
   };
-
+  
   return (
-    <div className="App">
-      <main>
-        <h1>Lista de tareas!</h1>
-        <Form agregarElemento={agregarElemento} />
-        <Lista
-          tareas={lista}
-          borrarTarea={borrarTarea}
-          editarTarea={editarTarea}
-        />
-      </main>
-    </div>
+    <React.StrictMode>
+    <BrowserRouter>
+    <Routes>
+      <Route path='/'element={<PaginaPrincipal/>}/>
+      <Route path='AgregarTarea' element={<AgregarTarea agregarElemento={agregarElemento}/>}/>
+      <Route  path="ListaDeTareas" element={<ListaDeTareas tareas={lista} borrarTarea={borrarTarea} editarTarea={editarTarea}/>}/>
+    </Routes>
+    </BrowserRouter>
+  </React.StrictMode>
   );
 }
 
