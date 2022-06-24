@@ -24,6 +24,7 @@ const Form = ({ agregarElemento }) => {
       id: uuidv4(),
       terminada: false,
       fecha: new Date(),
+      editar: false
     });
   };
   return (

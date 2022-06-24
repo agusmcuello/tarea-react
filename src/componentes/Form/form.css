@@ -25,6 +25,8 @@ form {
     background-color: #f8d7da;
     border: 1px solid #f5c6cb;
     border-left: 7px solid #f5c6cb;
+    display: flex;
+    align-items: center;
   }
   
   .prioridad-media {
@@ -32,6 +34,8 @@ form {
     background-color: #fff3cd;
     border: 1px solid #ffeeba;
     border-left: 7px solid #ffeeba;
+    display: flex;
+    align-items: center;
   }
   
   .prioridad-baja {
@@ -40,5 +44,11 @@ form {
     border-left: 7px solid #b8daff;
     background-color: #cce5ff;
     color: #004085;
+    display: flex;
+    align-items: center;
   }
   
+  .form-edit{
+    display: flex;
+    align-items: center;
+  }

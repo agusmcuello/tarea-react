@@ -5,7 +5,6 @@ import AgregarTarea from "./pages/AgregarTarea";
 import ListaDeTareas from "./pages/ListaDeTareas";
 import { PaginaPrincipal } from "./pages/PaginaPrincipal";
 
-
 function App() {
   const [lista, setLista] = useState([]);
   const agregarElemento = (elementoAAgregar) => {
@@ -19,8 +18,6 @@ function App() {
   };
 
   const editarTarea = (elementoAEditar) => {
-    // encontrar el indice del elemento a editar por id
-    // al elemento que se encuentra en ese indice, asignarle los valores de elementoAEditar
     const indiceAEditar = lista.findIndex(
       (elemento) => elemento.id === elementoAEditar.id
     );
@@ -28,17 +25,29 @@ function App() {
     lista[indiceAEditar] = { ...elementoAEditar };
     setLista(listaEditada);
   };
-  
+
   return (
     <React.StrictMode>
-    <BrowserRouter>
-    <Routes>
-      <Route path='/'element={<PaginaPrincipal/>}/>
-      <Route path='AgregarTarea' element={<AgregarTarea agregarElemento={agregarElemento}/>}/>
-      <Route  path="ListaDeTareas" element={<ListaDeTareas tareas={lista} borrarTarea={borrarTarea} editarTarea={editarTarea}/>}/>
-    </Routes>
-    </BrowserRouter>
-  </React.StrictMode>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<PaginaPrincipal />} />
+          <Route
+            path="AgregarTarea"
+            element={<AgregarTarea agregarElemento={agregarElemento} />}
+          />
+          <Route
+            path="ListaDeTareas"
+            element={
+              <ListaDeTareas
+                tareas={lista}
+                borrarTarea={borrarTarea}
+                editarTarea={editarTarea}
+              />
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </React.StrictMode>
   );
 }
 

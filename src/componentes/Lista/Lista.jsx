@@ -1,7 +1,17 @@
 import React from "react";
 import "./lista.css";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import { useState } from "react";
 
 function Lista({ tareas, borrarTarea, editarTarea }) {
+  const [valorTextField, setValorTextField] = useState("");
+
+  const onChangeTextField = (ev) => {
+    ev.persist();
+    setValorTextField(ev.target.value);
+  };
+
   const ordenarTareas = tareas.sort((a, b) => {
     if (a.prioridad === b.prioridad) {
       return a.fecha - b.fecha;
@@ -32,23 +42,26 @@ function Lista({ tareas, borrarTarea, editarTarea }) {
     editarTarea(tarea);
   };
 
-  const cambiarDescripcion = (tarea) => {
+  const habilitarEdicion = (tarea) =>{
+    tarea.editar=!tarea.editar;
     editarTarea(tarea);
-  };
+}
+
+const onSubmitEdicion = (tarea) =>{
+  tarea.description=valorTextField;
+  editarTarea(tarea);
+}
 
   const mostrarTarea = ordenarTareas.map((tarea) => (
-    <div className="tarea">
+    <div className={tarea.prioridad}>
       <li
-        className={tarea.prioridad}
         onClick={() => borrarTarea(tarea)}
         key={tarea.id}
         style={{ textDecoration: tarea.terminada ? "line-through" : "none" }}
       >
-        {tarea.description}
+        {tarea.description} 
       </li>
-      {/* <button className="editar-tarea" onClick={cambiarDescripcion}>
-        Editar Tarea
-      </button> */}
+      <Button variant="contained" size="small" onClick={()=>habilitarEdicion(tarea)}>Editar</Button>
       <input
         className="check"
         checked={tarea.terminada}
@@ -57,14 +70,16 @@ function Lista({ tareas, borrarTarea, editarTarea }) {
         name=""
         id=""
       />
-      <input type="text" />
+      <div key={"hola"} className="form-edit" style={{display:tarea.editar?"block":"none"}}>
+      <TextField onChange={onChangeTextField} id="standard-basic" label="Editar tarea" variant="standard" value={valorTextField} />
+      <Button variant="outlined" size="small" onClick={()=>onSubmitEdicion(tarea)}>OK</Button>      
+      </div>
     </div>
   ));
 
   return (
     <>
       <h3>Tareas</h3>
-      {/* <p id="mensaje-lista-vacia" style={{display:tareas.length?"none":"block"}}>Parece que no hay nada por aquí!</p> */}
       {tareas.length === 0 ? (
         <p id="mensaje-lista-vacia">Parece que no hay nada por aquí!</p>
       ) : (
