@@ -1,9 +1,17 @@
-import React from "react";
 import "./form.css";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import { Link } from "react-router-dom";
 
 const Form = ({ agregarElemento }) => {
+  const [open, setOpen] = React.useState(false);
   const [valorInput, setValorInput] = useState("");
   const [valorPrioridad, setValorPrioridad] = useState("");
 
@@ -26,6 +34,12 @@ const Form = ({ agregarElemento }) => {
       fecha: new Date(),
       editar: false
     });
+  };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
   };
   return (
     <div>
@@ -50,9 +64,41 @@ const Form = ({ agregarElemento }) => {
         <option value="prioridad-media">media</option>
         <option value="prioridad-alta">alta</option>
       </select>
-      <button onClick={onFormSubmit} disabled={botonDeshabilitado} id="agregar">
-        Agregar!
-      </button>
+      <Button
+        variant="outlined"
+        onClick={() => {
+          handleClickOpen();
+          onFormSubmit();
+        }}
+        disabled={botonDeshabilitado}
+        id="agregar"
+      >
+        Ingresar
+      </Button>
+      <Link className="link" to="/ListaDeTareas">
+        <Button>Ir a lista de Tareas</Button>
+      </Link>{" "}
+      <Dialog
+        open={open}
+        onClose={() => handleClose()}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Tienes una nueva tarea"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            ¿Deseas revisar tu lista de tareas?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => handleClose()}>Quizas más tarde</Button>
+          <Link className="link" to="/ListaDeTareas">
+            <Button>De acuerdo</Button>
+          </Link>{" "}
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
