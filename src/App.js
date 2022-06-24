@@ -29,12 +29,13 @@ function App() {
     setLista(listaEditada);
   };
   
+
   return (
     <React.StrictMode>
     <BrowserRouter>
     <Routes>
       <Route path='/'element={<PaginaPrincipal/>}/>
-      <Route path='AgregarTarea' element={<AgregarTarea agregarElemento={agregarElemento}/>}/>
+      <Route path='AgregarTarea' element={<AgregarTarea agregarElemento={agregarElemento} />}/>
       <Route  path="ListaDeTareas" element={<ListaDeTareas tareas={lista} borrarTarea={borrarTarea} editarTarea={editarTarea}/>}/>
     </Routes>
     </BrowserRouter>
